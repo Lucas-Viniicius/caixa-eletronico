@@ -27,12 +27,16 @@ public class Usuario {
         return this.saldo;
     }
 
+    public String getSaldoFormatado(){
+        return String.format("R$ %.2f", saldo);
+    }
+
     public void mostrarDados(){
-        System.out.println("\n********** DADOS DO USUÁRIO: **********\n");
+        System.out.println("\n********** DADOS DO USUÁRIO ***********\n");
         System.out.println("Nome:               "+getNome());
-        System.out.println("Tipo da Conta:      "+getTipoConta());
-        System.out.println("saldo:              "+getSaldo());
-        System.out.println("\n********** DADOS DO USUÁRIO: **********\n");
+        System.out.println("Conta:              "+getTipoConta());
+        System.out.println("Saldo:              "+getSaldoFormatado());
+        System.out.println("\n********** DADOS DO USUÁRIO ***********\n");
     }
 }
 

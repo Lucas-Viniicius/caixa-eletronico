@@ -37,6 +37,7 @@ public class MenuUsuario {
         pessoa01.setSaldo(saldo);
 
         pessoa01.mostrarDados();
+        pessoa01.operacoes();
         
         input.close();
     }

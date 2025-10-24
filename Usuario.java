@@ -51,7 +51,7 @@ public class Usuario {
         System.out.print("Deseja fazer alguma operação ? ");
         String opcao01 = input.nextLine();
         if(opcao01.equalsIgnoreCase("nao")){
-            System.out.println("Encerrando... Obrigado usar nosso caixa eletrônico!");
+            System.out.println("Encerrando... Obrigado por usar nosso caixa eletrônico!");
             return;
         }else{
             System.out.println("\nOlá, Bem-vindo(a) ao menu de operações.");
@@ -60,55 +60,58 @@ public class Usuario {
                 System.out.println("Digite 2 para DEPOSITAR");
                 System.out.println("Digite 3 para VER SEU SALDO");
                 System.out.println("Digite 4 para SAIR");
-                System.out.print("\nInforme o DIGITO da operação que você deseja realizar: "); 
+                System.out.print("\nInforme o DÍGITO da operação que você deseja realizar: "); 
                 int numeroEscolhido = input.nextInt();
 
                 switch(numeroEscolhido){
                     case 1:
+                        limpaTela();
                         while(true){
-                            limpaTela();
-
                             System.out.println("\n**************************");
                             System.out.println("      ÁREA DE SAQUE");
                             System.out.println("**************************\n");
-                            System.out.print("Informe o valor que você deseja sacar: "); 
+                            System.out.print("Informe o valor que você deseja sacar ou digite 0 para sair: "); 
                             float valorSacado = input.nextFloat();
 
                             if(valorSacado > saldo){
                                 System.out.println("\nValor não disponível. Tente novamente ");
-                            }else{
+                            } else if(valorSacado == 0){
+                                System.out.println("Encerrando programa..."); 
+                                return;
+                            } else{
                                 this.saldo = saldo - valorSacado;
-                                System.out.println("\nSaque realizado com sucesso! Seu novo saldo é de: R$ " +getSaldoFormatado());
+                                System.out.println("\nSaque realizado com sucesso! Seu novo saldo é de: R$ " +getSaldoFormatado()+"\n");
                                 break;
                             }
                         }
                         break;
                     case 2:
+                        limpaTela();
                         while(true){
-                            limpaTela();
-
                             System.out.println("\n**************************");
-                            System.out.println("     ÁREA DE DEPOSITO");
+                            System.out.println("     ÁREA DE DEPÓSITO");
                             System.out.println("**************************\n");
                             System.out.print("Informe o valor que você deseja depositar: ");
                             float valorDeposito = input.nextFloat();
 
                             input.nextLine();
-                            if(valorDeposito <= 0){
+                            if(valorDeposito < 0){
                                 System.out.println("\nValor inválido. Adicione um valor maior que zero!");
+                            }else if(valorDeposito == 0){
+                                System.out.println("Encerrando programa..."); 
+                                return;
                             }else{
                                 this.saldo = saldo + valorDeposito;
-                                System.out.println("\nR$ "+valorDeposito+" Depositado com sucesso! Seu novo saldo é de: "+getSaldoFormatado());
+                                System.out.println("\nR$ "+valorDeposito+" Depositado com sucesso! Seu novo saldo é de: "+getSaldoFormatado()+"\n");
                                 break;
                             }
                         }
                         break;
                     case 3:
                         limpaTela();
-
                         System.out.println("*********************************************\n");
                         System.out.println("    Seu saldo atual é de: "+getSaldoFormatado());
-                        System.out.println("\n*********************************************");
+                        System.out.println("\n*********************************************\n");
                         break;
 
                     case 4:
@@ -117,10 +120,9 @@ public class Usuario {
 
                     default:
                         limpaTela();
-
-                        System.out.println("\nEssa opção não existe! Tente novamente ou digite 4 para sair.");
+                        System.out.println("\nEssa opção não existe! Tente novamente ou digite 4 para sair.\n");
                 }
-            }
+            } 
         }
     }
 }
